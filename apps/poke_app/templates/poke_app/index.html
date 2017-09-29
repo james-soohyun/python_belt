@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h2>Hello, {{request.session.alias}}</h3>
+
+		<a href="/pokes/logout">Logout</a>
+
+		<h4>Total Number Each User Has Poked</h4>
+
+		{%for user in users%}
+
+			{%if user.poker.all.count > 1%}
+
+			<p>{{user.alias}} poked users {{user.poker.all.count}} times</p>
+
+			{%endif%}
+
+		{%endfor%}
+
+<!-- 		{%for poke in pokes%}
+
+				{{poke.send_user.name}} poked you {{poke.send_user.count}}
+
+			<p>{{poke.alias}} poked you {{poke.all.count}} times</p>
+
+		{%endfor%} -->
+
+		{%if otherUsers%}
+			<table>
+				<thead>
+					<th>Name</th>
+					<th>Alias</th>
+					<th>Email address</th>
+					<th>Poke History</th>
+					<th>Action</th>
+				</thead>
+
+				{%for user in users%}
+					<tr>
+						<td>{{user.name}}</td>
+						<td>{{user.alias}}</td>
+						<td>{{user.email}}</td>
+						<td>{{user.pokee.all.count}}</td>
+						<td>
+							<a href="/pokes/poke/{{user.id}}" name="poke">Poke!</a>
+						</td>
+					</tr>
+				{%endfor%}
+			</table>
+		{%endif%}
+
+		{%if messages%}
+
+			{%for message in messages%}
+
+				<p>{{message}}</p>
+
+			{%endfor%}
+
+		{%endif%}
+
+	</body>
+</html>

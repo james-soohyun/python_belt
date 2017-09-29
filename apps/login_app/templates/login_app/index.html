@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Belt Exam</title>
+	</head>
+	<body>
+
+		<h1>Welcome!</h1>
+
+		<h3>Register</h3>
+		<form action="/main/register" method="post">
+
+			{%csrf_token%}
+
+			<label>Name: </label>
+			<input type="text" name="name"><br>
+
+			<label>Alias: </label>
+			<input type="text" name="alias"><br>
+
+			<label>Email: </label>
+			<input type="text" name="email"><br>
+
+			<label>Password: </label>
+			<input type="text" name="password"><br>
+			<label>*Password should be at least 8 characters</label><br>
+
+			<label>Confirm PW: </label>
+			<input type="text" name="confirm"><br>
+
+			<label>DOB: </label>
+			<input type="date" name="birthday"><br>
+
+			<input type="submit" value="Register">
+
+		</form>	
+
+		<h3>Login</h3>
+		<form action="/main/login" method="post">
+
+			{%csrf_token%}
+
+			<label>Email: </label>
+			<input type="text" name="email"><br>
+
+			<label>Password: </label>
+			<input type="text" name="password"><br>
+
+			<input type="submit" value="Login">
+
+		</form>	
+
+		{%if messages%}
+
+			{%for message in messages%}
+
+					<p>{{message}}</p>
+
+			{%endfor%}
+
+		{%endif%}
+
+	</body>
+</html>
